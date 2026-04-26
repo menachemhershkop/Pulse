@@ -6,7 +6,6 @@
 generator client {
   provider = "prisma-client"
   output   = "../app/generated/prisma"
-
 }
 
 datasource db {
@@ -36,9 +35,9 @@ model AdultLog {
 
   state String
 
-  userId Int
-  user   User @relation(fields: [userId], references: [id])
-  lestUpdate DateTime
+  userId    Int
+  user      User    @relation(fields: [userId], references: [id])
+  lestUpdate  DateTime  @default(now()) @updatedAt
   missionId Int
   mission   Mission @relation(fields: [missionId], references: [missionId])
 }
