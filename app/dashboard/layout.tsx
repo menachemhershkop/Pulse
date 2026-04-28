@@ -1,13 +1,13 @@
 import Link from "next/link";
+import Navbar from "../ui/Navbar";
 
 export default function DahboardLayout({children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <div className="grid grid-flow-col grid-rows-2 gap-2 border 120px hover:bg-amber-50">
-      <button className="bg-blue-50 border-width:1px"><Link href={'/missions'} >משימות</Link></button>
-      <button><Link href={'/dashboard'}>משתמשים</Link></button>
+    <div className="bg-gray-50 min-h-screen">
+     <Navbar/>
       <div>{children}</div>
       </div>
    

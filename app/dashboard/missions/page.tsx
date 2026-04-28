@@ -1,5 +1,6 @@
-import { getMissions, createMission } from "../lib//dal/services/mission-service";
-import { getUsers } from "../lib/dal/services/user-service";
+import { getMissions, createMission, deleteMission} from '@/app/lib/dal/services/mission-service';
+import { getUsers } from "@/app/lib/dal/services/user-service";
+
 
 export default async function MissionsPage() {
 
@@ -12,26 +13,31 @@ export default async function MissionsPage() {
     <div className="p-8 max-w-3xl mx-auto text-black">
       <h1 className="text-2xl font-bold mb-6">ניהול משימות</h1>
 
-      <form action={createMission} className="bg-gray-50 p-4 rounded-lg border mb-8 flex flex-col gap-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <form action={createMission} className="bg-white p-6 rounded-lg border shadow-sm mb-8 flex flex-col gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <input
             name="missionName"
-            placeholder="שם המשימה (למשל: שטיפת כלים)"
+            placeholder="שם המשימה"
             className="border p-2 rounded"
             required
           />
           
           <select name="userId" className="border p-2 rounded" required>
-            <option value="">בחר משתמש אחראי...</option>
+            <option value="">אחראי...</option>
             {users.map(user => (
-              <option key={user.id} value={user.id}>
-                {user.firstName} {user.lastName}
-              </option>
+              <option key={user.id} value={user.id}>{user.firstName} {user.lastName}</option>
             ))}
+          </select>
+
+          {/* שדה העדיפות החדש */}
+          <select name="priority" className="border p-2 rounded" required>
+            <option value="low">עדיפות נמוכה</option>
+            <option value="medium" selected>עדיפות בינונית</option>
+            <option value="high">עדיפות גבוהה 🔥</option>
           </select>
         </div>
         
-        <button type="submit" className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">
+        <button type="submit" className="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition font-bold">
           צור משימה חדשה
         </button>
       </form>
@@ -54,7 +60,18 @@ export default async function MissionsPage() {
                     {m.user.firstName} {m.user.lastName}
                   </span>
                 </td>
+                <td className="p-4 text-left">
+  <form action={async () => {
+    "use server";
+    await deleteMission(m.missionId);
+  }}>
+    <button className="text-red-600 hover:text-red-800 text-sm font-bold bg-red-50 px-2 py-1 rounded border border-red-200">
+      מחק משימה 🗑️
+    </button>
+  </form>
+</td>
               </tr>
+              
             ))}
           </tbody>
         </table>

@@ -1,52 +1,69 @@
-import {getUsersWithTaskCount, addUser} from '../lib/dal/services/user-service'
+import { getDashboardStats } from "@/app/lib/dal/services/dashboard-service";
 
+export default async function DashboardPage() {
+  const stats = await getDashboardStats();
 
-export default async function Dashboard() {
-  const users = await getUsersWithTaskCount();
- return (
-    <div className="p-8 max-w-2xl mx-auto">
-      <h1 className="text-2xl font-bold mb-6">ניהול משתמשים</h1>
+  const cards = [
+    {
+      title: "משימות פתוחות",
+      value: stats.openMissions,
+      description: "משימות פעילות במערכת",
+      color: "text-blue-600",
+      bg: "bg-blue-50",
+      icon: "📋"
+    },
+    {
+      title: "הושלמו בהצלחה",
+      value: stats.completedLogs,
+      description: "סך משימות בסטטוס בוצע",
+      color: "text-green-600",
+      bg: "bg-green-50",
+      icon: "✅"
+    },
+    {
+      title: "פעולות היום",
+      value: stats.auditToday,
+      description: "לוגים ועדכונים מהיממה האחרונה",
+      color: "text-purple-600",
+      bg: "bg-purple-50",
+      icon: "⏱️"
+    }
+  ];
 
-  
-      <form action={addUser} className="flex gap-4 mb-8">
-        <input
-          name="firstName"
-          placeholder="שם פרטי"
-          className="border p-2 rounded w-full text-black"
-          required
-        />
-        <input
-          name="lastName"
-          placeholder="שם משפחה"
-          className="border p-2 rounded w-full text-black"
-          required
-        />
-        <button 
-          type="submit" 
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
-        >
-          הוסף
-        </button>
-      </form>
+  return (
+    <div className="p-8 max-w-7xl mx-auto text-black">
+      <header className="mb-10">
+        <h1 className="text-3xl font-bold tracking-tight">לוח בקרה</h1>
+        <p className="text-gray-500 mt-2">סקירה כללית של ביצועי המערכת והמשימות.</p>
+      </header>
 
-
-      <div className="bg-white shadow rounded-lg overflow-hidden border">
-        <ul className="divide-y">
-          {users.map((user) => (
-            <li key={user.id} className="p-4 flex justify-between items-center">
-              <div>
-                <p className="font-medium">{user.firstName} {user.lastName}</p>
-                <p className="text-xs text-gray-500">מזהה: {user.id}</p>
+      {/* Grid של הכרטיסיות */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+        {cards.map((card, index) => (
+          <div key={index} className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+            <div className="flex items-center justify-between mb-4">
+              <div className={`p-3 rounded-xl ${card.bg} text-2xl`}>
+                {card.icon}
               </div>
-              <div className="flex items-center gap-2">
-                <span className="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm font-semibold border border-blue-200">
-                   {user._count.missions} משימות
-                </span>
-              </div>
-            </li>
-          ))}
-        </ul>
+              <span className={`text-3xl font-bold ${card.color}`}>
+                {card.value}
+              </span>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold text-gray-700">{card.title}</h3>
+              <p className="text-sm text-gray-400">{card.description}</p>
+            </div>
+          </div>
+        ))}
       </div>
+
+      {/* כאן אפשר להוסיף רשימה של "פעולות אחרונות" מתחת לכרטיסיות */}
+      <section className="bg-white rounded-2xl border border-gray-100 p-6">
+        <h2 className="text-xl font-bold mb-4 italic text-gray-800">סיכום מהיר</h2>
+        <div className="h-32 flex items-center justify-center border-2 border-dashed border-gray-100 rounded-xl text-gray-300">
+          כאן ניתן להוסיף גרף התקדמות בעתיד
+        </div>
+      </section>
     </div>
   );
 }

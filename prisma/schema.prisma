@@ -21,11 +21,12 @@ model User {
 }
 
 model Mission {
-  missionId   Int    @id @default(autoincrement())
+  missionId   Int     @id @default(autoincrement())
   missionName String
-
-  userId Int
-  user   User @relation(fields: [userId], references: [id])
+  priority    String  @default("Medium")
+  isDeleted   Boolean @default(false)
+  userId      Int
+  user        User    @relation(fields: [userId], references: [id])
 
   adultLogs AdultLog[]
 }
@@ -35,9 +36,9 @@ model AdultLog {
 
   state String
 
-  userId    Int
-  user      User    @relation(fields: [userId], references: [id])
-  lestUpdate  DateTime  @default(now()) @updatedAt
-  missionId Int
-  mission   Mission @relation(fields: [missionId], references: [missionId])
+  userId     Int
+  user       User     @relation(fields: [userId], references: [id])
+  lestUpdate DateTime @default(now()) @updatedAt
+  missionId  Int
+  mission    Mission  @relation(fields: [missionId], references: [missionId])
 }
