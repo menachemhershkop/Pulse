@@ -1,6 +1,6 @@
-import { getLogs, createAdultLog } from "@/services/log-service";
-import { getUsers } from "@/services/user-service";
-import { getMissions } from "@/services/mission-service";
+import {createAdultLog, getLogs} from '../lib/dal/services/log-service'
+import { getUsers } from "../lib/dal/services/user-service";
+import { getMissions } from "../lib/dal/services/mission-service";
 
 export default async function LogsPage() {
   const [logs, users, missions] = await Promise.all([
@@ -15,8 +15,6 @@ export default async function LogsPage() {
         <h1 className="text-3xl font-bold">מעקב משימות ולוגים</h1>
         <p className="text-gray-600">צפייה בכלל הפעילויות והסטטוסים במערכת</p>
       </header>
-
-      {/* טופס הוספה מקוצר */}
       <section className="mb-10 bg-white p-6 rounded-xl shadow-sm border border-gray-200">
         <h2 className="text-lg font-semibold mb-4">עדכון סטטוס חדש</h2>
         <form action={createAdultLog} className="flex flex-wrap gap-4">
@@ -43,7 +41,7 @@ export default async function LogsPage() {
         </form>
       </section>
 
-      {/* טבלת הלוגים המרכזית */}
+
       <div className="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
         <table className="w-full text-right border-collapse">
           <thead className="bg-gray-50 border-b border-gray-200">

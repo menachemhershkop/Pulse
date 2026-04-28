@@ -1,5 +1,5 @@
-import { getMissions, createMission } from "@/services/mission-service";
-import { getUsers } from "@/services/user-service";
+import { getMissions, createMission } from "../lib//dal/services/mission-service";
+import { getUsers } from "../lib/dal/services/user-service";
 
 export default async function MissionsPage() {
 

@@ -1,5 +1,5 @@
 "use server"
-import { prisma } from "@/lib/dal/prisma"; 
+import { prisma } from "../prisma";
 import { revalidatePath } from "next/cache";
 
 export async function createMission(formData:FormData){

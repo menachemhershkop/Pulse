@@ -1,4 +1,4 @@
-import {getUsersWithTaskCount, addUser} from "@/services/user-service"
+import {getUsersWithTaskCount, addUser} from '../lib/dal/services/user-service'
 
 
 export default async function Dashboard() {
