@@ -20,8 +20,8 @@ export async function createMission(formData:FormData){
     }
   });
 
-  revalidatePath("/missions");
-  revalidatePath('/logs')
+  revalidatePath("dashboard/missions");
+  revalidatePath('dashboard/logs')
 }
 
 export async function getMissions(){

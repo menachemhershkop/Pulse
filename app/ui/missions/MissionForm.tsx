@@ -37,7 +37,7 @@ export default function MissionForm({ users }: MissionFormProps) {
                     <option value="medium" selected>
                         עדיפות בינונית
                     </option>
-                    <option value="high">עדיפות גבוהה 🔥</option>
+                    <option value="high">עדיפות גבוהה</option>
                 </select>
             </div>
 

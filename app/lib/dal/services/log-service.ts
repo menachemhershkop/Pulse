@@ -27,3 +27,18 @@ export async function getLogs() {
     orderBy:{lestUpdate:'desc'}
   });
 }
+
+export async function getActiveLogs(){
+  return await prisma.adultLog.findMany({
+    where:{
+      mission:{
+        isDeleted:false
+      }
+    },
+    include:{
+      user:true,
+      mission: true
+    },
+    orderBy:{lestUpdate:'desc'}
+  });
+}

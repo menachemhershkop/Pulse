@@ -1,6 +1,6 @@
-import { createAdultLog, getLogs } from "../../lib/dal/services/log-service";
+import { getLogs } from "../../lib/dal/services/log-service";
 import { getUsers } from "../../lib/dal/services/user-service";
-import { getMissions, markAsDone } from "../../lib/dal/services/mission-service";
+import { getMissions } from "../../lib/dal/services/mission-service";
 import LogsTable from "@/app/ui/logs/LogsTable";
 
 export default async function LogsPage() {

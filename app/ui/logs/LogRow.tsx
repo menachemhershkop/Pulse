@@ -4,11 +4,11 @@ import StatusBadge from "./StatusBadge";
 import { markAsDone } from "@/app/lib/dal/services/mission-service";
 
 interface LogRowProps {
-    log : Log;
+  log: Log;
 }
 
-export default function LogRow({log}: LogRowProps) {
- return (
+export default function LogRow({ log }: LogRowProps) {
+  return (
     <tr className="border-b hover:bg-gray-50 transition">
       <td className="p-4 font-bold">{log.mission.missionName}</td>
 
@@ -24,6 +24,7 @@ export default function LogRow({log}: LogRowProps) {
         <StatusBadge state={log.state} />
       </td>
 
+      <td>{new Date(log.lestUpdate).toLocaleDateString('he-IL')}</td>
       <td className="p-4">
         {log.state !== "בוצע" && (
           <form

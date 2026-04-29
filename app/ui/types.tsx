@@ -14,6 +14,7 @@ export type Log = {
   id: number;
   state: string;
   missionId: number;
+  lestUpdate: Date;
   userId: number;
   mission: {
     missionName: string;
