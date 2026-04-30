@@ -25,3 +25,8 @@ export type Log = {
     lastName: string;
   };
 };
+
+ export type ActionState = {
+  error?: string;
+  success?: string;
+};

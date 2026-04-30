@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { logout } from "../lib/dal/services/auth-service";
 
-const Navbar = () => {
+const Navbar = ({ userName }: { userName: string | null }) => {
   const pathname = usePathname();
 
   const navItems = [
@@ -33,11 +34,10 @@ const Navbar = () => {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors ${
-                      isActive
+                    className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors ${isActive
                         ? "border-indigo-500 text-gray-900"
                         : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
-                    }`}
+                      }`}
                   >
                     {item.name}
                   </Link>
@@ -46,8 +46,17 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* צד שמאל - חיווי סטטוס או פרופיל (אופציונלי) */}
-          <div className="flex items-center">
+
+          <div className="flex items-center gap-4">
+            {userName ? (
+              <div className="flex items-center gap-3">
+                <span className="text-sm font-medium text-gray-700">שלום, {userName}</span>
+                <button onClick={() => logout()} className="bg-red-600 text-white font-semibold px-1 py-0.5 rounded border border-red-700  hover:bg-red-700 active:bg-red-800 transition-all duration-200 cursor-pointer"
+                  >התנתק</button>
+              </div>
+            ) : (
+              <Link href={"/login"} className="text-sm text-indigo-600 font-bold">התחבר</Link>
+            )}
             <div className="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full font-medium">
               מחובר למסד נתונים
             </div>
@@ -61,9 +70,8 @@ const Navbar = () => {
           <Link
             key={item.href}
             href={item.href}
-            className={`text-[10px] font-bold uppercase ${
-              pathname === item.href ? "text-indigo-600" : "text-gray-400"
-            }`}
+            className={`text-[10px] font-bold uppercase ${pathname === item.href ? "text-indigo-600" : "text-gray-400"
+              }`}
           >
             {item.name}
           </Link>

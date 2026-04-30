@@ -30,3 +30,15 @@ export async function logout(){
     cookieStore.delete("auth_session");
     redirect("login");
 }
+
+export async function getMe(){
+    const cookieStore = await cookies();
+    const userId = cookieStore.get("auth_session")?.value;
+
+    if (!userId) return null;
+
+    return await prisma.user.findUnique({
+        where:{id: parseInt(userId)},
+        select: { firstName: true, lastName:true}
+    });
+}

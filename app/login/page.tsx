@@ -1,4 +1,5 @@
 import { login } from "@/app/lib/dal/services/auth-service";
+import Link from "next/link";
 
 export default function LoginPage({ searchParams }: { searchParams: { error?: string } }) {
   return (
@@ -20,6 +21,7 @@ export default function LoginPage({ searchParams }: { searchParams: { error?: st
             כניסה
           </button>
         </form>
+      <Link href={'/'}>חזרה לדף הראשי</Link>
       </div>
     </div>
   );
