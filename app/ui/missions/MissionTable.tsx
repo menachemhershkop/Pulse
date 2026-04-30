@@ -1,4 +1,5 @@
 import MissionRow from './MissionRow';
+import EmptyMissionsState from './EmptyMissionsState';
 
 interface MissionTableProps {
     missions: {
@@ -9,6 +10,9 @@ interface MissionTableProps {
 }
 
 export default function MissionTable( {missions}:MissionTableProps) {
+  if (missions.length===0){
+    return <EmptyMissionsState/>
+  }
   return (
      <div className="overflow-x-auto">
       <table className="w-full text-right border-collapse">

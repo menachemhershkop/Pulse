@@ -55,7 +55,6 @@ export default function MissionForm({ users }: MissionFormProps) {
         {isPending ? "יוצר..." : "צור משימה חדשה"}
       </button>
 
-      {/* הצגת הודעות סטטוס */}
       {state?.error && (
         <div className="p-3 bg-red-50 text-red-600 rounded-lg text-sm font-medium">
           ⚠️ {state.error}
