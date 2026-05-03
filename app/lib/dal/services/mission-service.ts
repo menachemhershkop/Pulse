@@ -3,6 +3,7 @@ import { ActionState } from "@/app/ui/types";
 import { prisma } from "../prisma";
 import { revalidatePath } from "next/cache";
 import { MissionSchema } from "../actions";
+import { tr } from "zod/locales";
 
 export async function createMission(
   prevState: ActionState,
@@ -13,11 +14,11 @@ export async function createMission(
     userId: Number(formData.get("userId")),
     priority: formData.get("priority"),
   });
- if (!validatedFields.success) {
+  if (!validatedFields.success) {
     return {
-      error: validatedFields.error.flatten().fieldErrors.missionName?.[0] || 
-             validatedFields.error.flatten().fieldErrors.userId?.[0] ||
-             "נתונים לא תקינים",
+      error: validatedFields.error.flatten().fieldErrors.missionName?.[0] ||
+        validatedFields.error.flatten().fieldErrors.userId?.[0] ||
+        "נתונים לא תקינים",
     };
   }
   try {
@@ -73,4 +74,45 @@ export async function deleteMission(missionId: number) {
   });
   revalidatePath("/missions");
   revalidatePath("/logs");
+}
+
+export async function getDeleltedMissions() {
+  try {
+    return await prisma.mission.findMany({
+      where: {
+        isDeleted: true,
+      },
+      include: {
+        user: {
+          select: { firstName: true, lastName: true },
+        },
+      },
+    });
+  } catch (error) {
+    throw new Error("שגיאה בשליפת ההודעות שנמחקו")
+  }
+}
+
+export async function restoreMission(missionId: number) {
+  console.log(missionId);
+  
+  try {
+    const mission = await prisma.mission.update({
+      where: { missionId: missionId },
+      data: {
+        isDeleted: false,
+      },
+    });
+    await prisma.adultLog.create({
+      data: {
+        state: "שוחזרה",
+        missionId: mission.missionId,
+        userId: mission.userId,
+      }
+    });
+    revalidatePath('/dashboard/mission');
+    return { success: "המשימה שוחזרה בהצלחה!" };
+  } catch (error) {
+    return { error: "שגיאה בשחזור המשימה" };
+  }
 }

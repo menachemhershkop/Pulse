@@ -1,20 +1,28 @@
-import MissionRow from './MissionRow';
-import EmptyMissionsState from './EmptyMissionsState';
+"use client";
+
+import MissionRow from "./MissionRow";
+import EmptyMissionsState from "./EmptyMissionsState";
+import { useOptimistic } from "react";
 
 interface MissionTableProps {
-    missions: {
-        missionId: number;
-        missionName:string;
-        user:{firstName:string; lastName:string};
-    }[];
+  missions: {
+    missionId: number;
+    missionName: string;
+    user: { firstName: string; lastName: string };
+  }[];
+  deleteAction: (id: number) => Promise<number>;
 }
 
-export default function MissionTable( {missions}:MissionTableProps) {
-  if (missions.length===0){
-    return <EmptyMissionsState/>
-  }
+export default function MissionTable({ missions, deleteAction }: MissionTableProps) {
+  const [optimisticMissions, removeOptimistic] = useOptimistic(
+    missions,
+    (current, id: number) => current.filter((m) => m.missionId !== id)
+  );
+
+  if (missions.length === 0) return <EmptyMissionsState />;
+
   return (
-     <div className="overflow-x-auto">
+    <div className="overflow-x-auto">
       <table className="w-full text-right border-collapse">
         <thead>
           <tr className="bg-gray-100 border-b">
@@ -26,15 +34,16 @@ export default function MissionTable( {missions}:MissionTableProps) {
         </thead>
 
         <tbody>
-          {missions.map((m) => (
-            <MissionRow key={m.missionId} mission={m} />
+          {optimisticMissions.map((m) => (
+            <MissionRow
+              key={m.missionId}
+              mission={m}
+              onDelete={removeOptimistic}
+              deleteAction={deleteAction}
+            />
           ))}
         </tbody>
       </table>
-
-      {missions.length === 0 && (
-        <p className="text-center p-4 text-gray-500">אין משימות במערכת</p>
-      )}
     </div>
-  )
+  );
 }

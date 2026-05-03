@@ -2,6 +2,7 @@ import { Log } from "../types";
 import PriorityBadge from "./PriorityBadge";
 import StatusBadge from "./StatusBadge";
 import { markAsDone } from "@/app/lib/dal/services/mission-service";
+import RelativeTime from "../RelativeTime";
 
 interface LogRowProps {
   log: Log;
@@ -24,7 +25,9 @@ export default function LogRow({ log }: LogRowProps) {
         <StatusBadge state={log.state} />
       </td>
 
-      <td>{new Date(log.lestUpdate).toLocaleDateString('he-IL')}</td>
+      <td className="p-4 text-gray-500 text-sm">
+        <RelativeTime date={log.lestUpdate} />
+      </td>
       <td className="p-4">
         {log.state !== "בוצע" && (
           <form
