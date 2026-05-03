@@ -9,6 +9,7 @@ interface MissionTableProps {
     missionId: number;
     missionName: string;
     user: { firstName: string; lastName: string };
+    createAt: Date;
   }[];
   deleteAction: (id: number) => Promise<number>;
 }
@@ -29,6 +30,7 @@ export default function MissionTable({ missions, deleteAction }: MissionTablePro
             <th className="p-3">ID</th>
             <th className="p-3">שם המשימה</th>
             <th className="p-3">אחראי</th>
+            <th>נוצר ב-</th>
             <th className="p-3"></th>
           </tr>
         </thead>

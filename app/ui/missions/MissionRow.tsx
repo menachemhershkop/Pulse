@@ -7,12 +7,22 @@ interface MissionRowProps {
     missionId: number;
     missionName: string;
     user: { firstName: string; lastName: string };
+    createAt: Date|string;
   };
   onDelete: (id: number) => void;
   deleteAction: (id: number) => Promise<number>;
 }
 
 export default function MissionRow({ mission, onDelete, deleteAction }: MissionRowProps) {
+  const formatMissionDate = (dateParam: string | Date | undefined) => {
+    if (!dateParam) return '---'; 
+    
+    const d = new Date(dateParam);
+    if (isNaN(d.getTime())) {
+      return 'תאריך לא חוקי'; 
+    }
+    return d.toLocaleDateString('he-IL');
+  };
   return (
     <tr className="border-b hover:bg-gray-50">
       <td className="p-3">{mission.missionId}</td>
@@ -24,7 +34,9 @@ export default function MissionRow({ mission, onDelete, deleteAction }: MissionR
           name={`${mission.user.firstName} ${mission.user.lastName}`}
         />
       </td>
-
+      <td className="p-3">
+        {formatMissionDate(mission.createAt)}
+      </td>
       <td className="p-4 text-left">
         <form
           action={async () => {

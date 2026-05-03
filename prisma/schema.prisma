@@ -28,6 +28,7 @@ model Mission {
   userId      Int
   user        User    @relation(fields: [userId], references: [id])
 
+  createAt  DateTime @default(now())
   adultLogs AdultLog[]
 }
 

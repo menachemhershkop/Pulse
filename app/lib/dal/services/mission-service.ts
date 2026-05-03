@@ -49,8 +49,13 @@ export async function createMission(
 export async function getMissions() {
   return await prisma.mission.findMany({
     where: { isDeleted: false },
-    include: {
-      user: true
+    select: {
+      missionId: true,
+      missionName: true,
+      createAt: true, 
+      user: {
+        select: { firstName: true, lastName: true }
+      }
     },
     orderBy: { missionId: 'desc' }
   });
