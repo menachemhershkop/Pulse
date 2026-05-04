@@ -1,5 +1,6 @@
 import { getMe } from "../lib/dal/services/auth-service";
 import Navbar from "../ui/Navbar";
+import '@/app/style/main.scss'
 
 export default async function DahboardLayout({children,
 }: Readonly<{

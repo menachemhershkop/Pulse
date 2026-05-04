@@ -1,0 +1,30 @@
+.user-item {
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+
+    &-name {
+      font-weight: 500;
+    }
+
+    &-id {
+      font-size: 0.75rem;
+      color: #6b7280;
+    }
+  }
+
+  &__badge {
+    background: #eff6ff;
+    color: #1d4ed8;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border: 1px solid #bfdbfe;
+  }
+}

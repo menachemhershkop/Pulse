@@ -1,0 +1,24 @@
+.quick-summary {
+  background: white;
+  border-radius: 1rem;
+  border: 1px solid #f3f4f6;
+  padding: 1.5rem;
+
+  h2 {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    font-style: italic;
+    color: #1f2937;
+  }
+
+  &__content {
+    height: 8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #f3f4f6;
+    border-radius: 0.75rem;
+    color: #d1d5db;
+  }
+}

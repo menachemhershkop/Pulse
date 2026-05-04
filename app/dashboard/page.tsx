@@ -35,7 +35,7 @@ export default async function DashboardPage() {
   ];
 
   return (
-    <div className="p-8 max-w-7xl mx-auto text-black">
+    <div className="dashboard">
       <DashboardHeader/>
       <StatsGrid cards={cards}/>
       <QuickSummary/>

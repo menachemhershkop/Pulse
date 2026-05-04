@@ -1,0 +1,50 @@
+.stats-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  border: 1px solid #f3f4f6;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  transition: box-shadow 0.2s;
+
+  &:hover {
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+
+  &__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+
+  &__icon {
+    padding: 0.75rem;
+    border-radius: 0.75rem;
+    font-size: 1.5rem;
+  }
+
+  &__value {
+    font-size: 1.875rem;
+    font-weight: bold;
+  }
+
+  &__title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #374151;
+  }
+
+  &__desc {
+    font-size: 0.875rem;
+    color: #9ca3af;
+  }
+}
+
+/* צבעים במקום Tailwind */
+.bg-blue { background: #eff6ff; }
+.bg-green { background: #ecfdf5; }
+.bg-purple { background: #f5f3ff; }
+
+.text-blue { color: #2563eb; }
+.text-green { color: #16a34a; }
+.text-purple { color: #9333ea; }

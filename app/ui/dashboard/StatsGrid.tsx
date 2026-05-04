@@ -7,7 +7,7 @@ interface StatsGridProps {
 
 export default function StatsGrid({ cards }: StatsGridProps) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+    <div className="stats-grid">
       {cards.map((card, index) => (
         <StatsCard key={index} {...card} />
       ))}
