@@ -5,24 +5,24 @@ import { ActionState } from "../types";
 
 
 interface MissionFormProps {
-    users: {
-        id: number;
-        firstName: string;
-        lastName: string;
-    }[];
+  users: {
+    id: number;
+    firstName: string;
+    lastName: string;
+  }[];
 }
 
 export default function MissionForm({ users }: MissionFormProps) {
-    const [state, formAction, isPending] = useActionState<ActionState, FormData>(
-  createMission,
-  {}
-);
-    return (
-        <form
-            action={formAction}
-            className="bg-white p-6 rounded-lg border shadow-sm mb-8 flex flex-col gap-4"
-        >
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+  const [state, formAction, isPending] = useActionState<ActionState, FormData>(
+    createMission,
+    {}
+  );
+  return (
+    <form
+      action={formAction}
+      className="bg-white p-6 rounded-lg border shadow-sm mb-8 flex flex-col gap-4"
+    >
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="flex flex-col gap-1">
           <input
             name="missionName"
@@ -65,6 +65,6 @@ export default function MissionForm({ users }: MissionFormProps) {
           ✅ {state.success}
         </div>
       )}
-        </form>
-    )
+    </form>
+  )
 }

@@ -1,7 +1,7 @@
 import { login } from "@/app/lib/dal/services/auth-service";
 import Link from "next/link";
 
-export default function LoginPage({ searchParams }: { searchParams: { error?: string } }) {
+export default function LoginPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 text-black">
       <div className="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md border border-gray-200">

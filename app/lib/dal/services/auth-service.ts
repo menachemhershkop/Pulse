@@ -28,10 +28,10 @@ export async function login(formData:FormData) {
 export async function logout(){
     const cookieStore = await cookies();
     cookieStore.delete("auth_session");
-    redirect("login");
+    redirect("/login");
 }
 
-export async function getMe(){
+export async function getName(){
     const cookieStore = await cookies();
     const userId = cookieStore.get("auth_session")?.value;
 

@@ -30,3 +30,6 @@ export type Log = {
   error?: string;
   success?: string;
 };
+export type MissionWithUser = Mission & {
+  user: User;
+};

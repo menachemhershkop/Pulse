@@ -3,7 +3,6 @@ import { ActionState } from "@/app/ui/types";
 import { prisma } from "../prisma";
 import { revalidatePath } from "next/cache";
 import { MissionSchema } from "../actions";
-import { tr } from "zod/locales";
 
 export async function createMission(
   prevState: ActionState,
@@ -41,7 +40,7 @@ export async function createMission(
     revalidatePath("dashboard/logs");
 
     return { success: "המשימה נוצרה בהצלחה" };
-  } catch (e) {
+  } catch {
     return { error: "שגיאה בקריאה לבסיס הנתונים" }
   }
 }
@@ -93,7 +92,7 @@ export async function getDeleltedMissions() {
         },
       },
     });
-  } catch (error) {
+  } catch {
     throw new Error("שגיאה בשליפת ההודעות שנמחקו")
   }
 }
@@ -117,7 +116,12 @@ export async function restoreMission(missionId: number) {
     });
     revalidatePath('/dashboard/mission');
     return { success: "המשימה שוחזרה בהצלחה!" };
-  } catch (error) {
+  } catch  {
     return { error: "שגיאה בשחזור המשימה" };
   }
+}
+
+export async function deleteMissionAction(id: number) {
+  await deleteMission(id);
+  return id;
 }

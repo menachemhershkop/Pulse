@@ -4,8 +4,8 @@ export default function Home() {
   return (<div className="min-h-[calc(100vh-64px)] flex flex-col items-center justify-center bg-gradient-to-b from-white to-indigo-50 text-black px-4">
 
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-[10%] -right-[10%] w-[40%] h-[40%] bg-indigo-100 rounded-full blur-3xl opacity-50" />
-        <div className="absolute -bottom-[10%] -left-[10%] w-[40%] h-[40%] bg-blue-100 rounded-full blur-3xl opacity-50" />
+        <div className="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] bg-indigo-100 rounded-full blur-3xl opacity-50" />
+        <div className="absolute bottom-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-100 rounded-full blur-3xl opacity-50" />
       </div>
 
       <div className="relative z-10 text-center max-w-3xl">
@@ -44,7 +44,7 @@ export default function Home() {
           </Link>
           
           <div className="flex items-center gap-2 text-gray-500 text-sm italic">
-            <span>מאובטח ע"י Prisma & Next.js</span>
+            <span>מאובטח ע``י Prisma & Next.js</span>
           </div>
         </div>
 

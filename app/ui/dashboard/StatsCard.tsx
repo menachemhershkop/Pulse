@@ -3,7 +3,7 @@ export interface StatsCardProps{
     value: number;
     description: string;
     bg: "bg-blue"
-color: "text-blue"
+    color: "text-blue"
     icon: string;
 }
 
