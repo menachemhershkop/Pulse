@@ -33,7 +33,7 @@ export default function LogRow({ log }: LogRowProps) {
           <form
             action={async () => {
               "use server";
-              await markAsDone(log.missionId, log.userId);
+              await markAsDone(log.missionId);
             }}
           >
             <button className="bg-green-600 text-white px-3 py-1 rounded text-sm hover:bg-green-700 transition shadow-sm">

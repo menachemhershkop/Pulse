@@ -3,6 +3,7 @@ import { ActionState } from "@/app/ui/types";
 import { prisma } from "../prisma";
 import { revalidatePath } from "next/cache";
 import { MissionSchema } from "../actions";
+import { cookies } from "next/headers";
 
 export async function createMission(
   prevState: ActionState,
@@ -61,7 +62,12 @@ export async function getMissions() {
 }
 
 
-export async function markAsDone(missionId: number, userId: number) {
+export async function markAsDone(missionId: number) {
+  const cookieStore = await cookies();
+    const userId:number =   Number(cookieStore.get("auth_session")?.value)
+    
+      
+      
   await prisma.adultLog.create({
     data: {
       missionId, userId,
@@ -101,6 +107,9 @@ export async function restoreMission(missionId: number) {
   console.log(missionId);
   
   try {
+     const cookieStore = await cookies();
+    const userId:number =   Number(cookieStore.get("auth_session")?.value)
+    
     const mission = await prisma.mission.update({
       where: { missionId: missionId },
       data: {
@@ -111,7 +120,7 @@ export async function restoreMission(missionId: number) {
       data: {
         state: "שוחזרה",
         missionId: mission.missionId,
-        userId: mission.userId,
+        userId: userId,
       }
     });
     revalidatePath('/dashboard/mission');
