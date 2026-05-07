@@ -42,7 +42,7 @@ export default function DeletedMissionsTable({ deletedMissions }: Props) {
     } catch  {
       return {
         success: null,
-        error: {message: "שגיאה בשחזור המשימה"},
+        error: "שגיאה בשחזור המשימה",
       };
     }
   },

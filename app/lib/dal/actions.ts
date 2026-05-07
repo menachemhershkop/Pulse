@@ -9,9 +9,14 @@ export const MissionSchema = z.object({
     userId: z.coerce
         .number()
         .positive("חובה לבחור אחראי למשימה"),
-    priority: z.enum(["low", "medium", "high"], {
-        required_error: "חובה לבחור עדיפות",
-        invalid_type_error: "ערך עדיפות לא תקין"
+   priority: z.enum(["low", "medium", "high"]).superRefine((val, ctx) => {
+        if (!val) {
+            ctx.addIssue({
+                code: z.ZodIssueCode.custom,
+                message: "חובה לבחור עדיפות",
+                path: [],
+            });
+        }
     }),
 });
 

@@ -1,9 +1,10 @@
+import { Log } from "@/app/ui/types";
 import { getLogs } from "../../lib/dal/services/log-service";
 import LogsTable from "@/app/ui/logs/LogsTable";
 
 export default async function LogsPage() {
   const [logs, ] = await Promise.all([
-    getLogs(),
+    getLogs() as unknown as Log[],
    
   ]);
 

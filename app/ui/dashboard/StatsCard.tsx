@@ -2,8 +2,8 @@ export interface StatsCardProps{
     title: string;
     value: number;
     description: string;
-    bg: "bg-blue"
-    color: "text-blue"
+    bg: string
+    color: string
     icon: string;
 }
 
