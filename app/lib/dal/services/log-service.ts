@@ -1,6 +1,6 @@
 "use server"
 
-import { prisma } from "../prisma";
+import { prisma } from "../prisma"; 
 import { revalidatePath } from "next/cache";
 
 export async function createAdultLog(formData: FormData) {
