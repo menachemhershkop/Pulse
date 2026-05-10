@@ -16,7 +16,7 @@ export default function LogsTable({ logs }: LogsTableProps) {
                         <th className="p-4">מבצע</th>
                         <th className="p-4">סטטוס אחרון</th>
                         <th className="p-4">תאריך עדכון אחרון</th>
-                        <th className="p-4">פעולה</th>
+                        {/* <th className="p-4">פעולה</th> */}
                     </tr>
                 </thead>
 

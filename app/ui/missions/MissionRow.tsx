@@ -8,7 +8,7 @@ interface MissionRowProps {
     missionName: string;
     user: { firstName: string; lastName: string };
     createAt: Date | string;
-    // בדיקה אם הלוג האחרון הוא "בוצע"
+
     adultLogs?: { state: string }[]; 
   };
   onDelete: (id: number) => void;
@@ -17,7 +17,7 @@ interface MissionRowProps {
 }
 
 export default function MissionRow({ mission, onDelete, deleteAction, markAsDoneAction }: MissionRowProps) {
-  // לוגיקה לבדיקה האם המשימה בוצעה
+
   const isDone = mission.adultLogs?.[0]?.state === "בוצע";
 
   return (
@@ -34,12 +34,12 @@ export default function MissionRow({ mission, onDelete, deleteAction, markAsDone
       <td className="p-4">
         <div className="flex gap-3 justify-end items-center">
           {isDone ? (
-            // אם המשימה בוצעה: מציגים רק את הטקסט שביקשת
+  
             <span className="text-green-600 font-bold text-sm bg-green-50 px-3 py-1 rounded-full border border-green-200">
               משימה בוצעה בהצלחה
             </span>
           ) : (
-            // אם המשימה לא בוצעה: מציגים את כפתורי הפעולה
+
             <>
               <form action={async () => {
                 await markAsDoneAction(mission.missionId);

@@ -28,7 +28,7 @@ export default function LogRow({ log }: LogRowProps) {
       <td className="p-4 text-gray-500 text-sm">
         <RelativeTime date={log.lestUpdate} />
       </td>
-      <td className="p-4">
+      {/* <td className="p-4">
         {log.state !== "בוצע" && (
           <form
             action={async () => {
@@ -41,7 +41,7 @@ export default function LogRow({ log }: LogRowProps) {
             </button>
           </form>
         )}
-      </td>
+      </td> */}
     </tr>
   );
 }
