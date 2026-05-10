@@ -1,4 +1,4 @@
-import { getDeleltedMissions, getMissions, deleteMissionAction} from '@/app/lib/dal/services/mission-service';
+import { getDeleltedMissions, getMissions, deleteMissionAction, markAsDone} from '@/app/lib/dal/services/mission-service';
 import { getUsers } from "@/app/lib/dal/services/user-service";
 import DeletedMissionsTable from '@/app/ui/missions/DeletedMissionsTable';
 import MissionForm from '@/app/ui/missions/MissionForm';
@@ -20,7 +20,7 @@ export default async function MissionsPage() {
     <h1 className='text-2xl font-bold nb-6'>ניהול משימות</h1>
 
     <MissionForm users={users}/>
-    <MissionTable missions={missions} deleteAction={deleteMissionAction}/>
+    <MissionTable missions={missions} deleteAction={deleteMissionAction} markAsDoneAction={markAsDone}/>
     <DeletedMissionsTable deletedMissions={deletedMissions}/>
    </div>
   );

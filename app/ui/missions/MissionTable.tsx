@@ -4,17 +4,20 @@ import MissionRow from "./MissionRow";
 import EmptyMissionsState from "./EmptyMissionsState";
 import { useOptimistic } from "react";
 
+
 interface MissionTableProps {
   missions: {
     missionId: number;
     missionName: string;
     user: { firstName: string; lastName: string };
     createAt: Date;
+    adultLogs: {state: string}[];
   }[];
   deleteAction: (id: number) => Promise<number>;
+  markAsDoneAction:(id:number)=> Promise<void>;
 }
 
-export default function MissionTable({ missions, deleteAction }: MissionTableProps) {
+export default function MissionTable({ missions, deleteAction, markAsDoneAction }: MissionTableProps) {
   const [optimisticMissions, removeOptimistic] = useOptimistic(
     missions,
     (current, id: number) => current.filter((m) => m.missionId !== id)
@@ -31,7 +34,7 @@ export default function MissionTable({ missions, deleteAction }: MissionTablePro
             <th className="p-3">שם המשימה</th>
             <th className="p-3">אחראי</th>
             <th>נוצר ב-</th>
-            <th className="p-3"></th>
+            <th className="p-3">פעולות</th>
           </tr>
         </thead>
 
@@ -42,6 +45,7 @@ export default function MissionTable({ missions, deleteAction }: MissionTablePro
               mission={m}
               onDelete={removeOptimistic}
               deleteAction={deleteAction}
+              markAsDoneAction={markAsDoneAction}
             />
           ))}
         </tbody>

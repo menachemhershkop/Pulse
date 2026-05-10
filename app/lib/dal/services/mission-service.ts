@@ -55,7 +55,13 @@ export async function getMissions() {
       createAt: true, 
       user: {
         select: { firstName: true, lastName: true }
+      },
+      adultLogs:{
+        select:{ state:true},
+        orderBy:{lestUpdate:'desc'},
+        take:1
       }
+
     },
     orderBy: { missionId: 'desc' }
   });
@@ -75,6 +81,7 @@ export async function markAsDone(missionId: number) {
     }
   });
   revalidatePath("/logs")
+  revalidatePath("dashboars/missions")
 }
 
 export async function deleteMission(missionId: number) {
