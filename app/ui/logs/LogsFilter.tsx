@@ -2,8 +2,6 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { useTransition } from "react";
-import { string } from "zod";
-
 
 export default function LogsFilter() {
     const router = useRouter();
@@ -26,7 +24,6 @@ export default function LogsFilter() {
         isPending ? "opacity-50" : "opacity-100"
       }`}
     >
-      {/* חיפוש לפי שם משימה */}
       <div className="flex-1 min-w-52">
         <input
           type="text"
@@ -39,7 +36,6 @@ export default function LogsFilter() {
         />
       </div>
 
-      {/* פילטר עדיפות */}
       <select
         defaultValue={searchParams.get("priority") || ""}
         onChange={(e) => handleFilterChange("priority", e.target.value)}
@@ -51,7 +47,6 @@ export default function LogsFilter() {
         <option value="low">נמוכה</option>
       </select>
 
-      {/* פילטר סטטוס */}
       <select
         defaultValue={searchParams.get("state") || ""}
         onChange={(e) => handleFilterChange("state", e.target.value)}

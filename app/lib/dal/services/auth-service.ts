@@ -4,7 +4,11 @@ import {prisma} from "../prisma";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
-export async function login(prevState:any, formData:FormData) {
+interface LoginState{
+    error?:string,
+    success?: boolean,
+}
+export async function login(prevState:LoginState|null, formData:FormData) {
     const firstName = formData.get("firstName")as string;
     const lastName= formData.get("lastName") as string;
 

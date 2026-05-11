@@ -1,7 +1,7 @@
 import { Log } from "../types";
 import PriorityBadge from "./PriorityBadge";
 import StatusBadge from "./StatusBadge";
-import { markAsDone } from "@/app/lib/dal/services/mission-service";
+// import { markAsDone } from "@/app/lib/dal/services/mission-service";
 import RelativeTime from "../RelativeTime";
 
 interface LogRowProps {
