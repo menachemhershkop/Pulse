@@ -6,7 +6,7 @@ export default function RelativeTime({ date }: { date: Date | string }) {
   const [timeString, setTimeString] = useState(getRelativeTimeString(date));
 
   useEffect(() => {
-    // רענון אוטומטי כל 30 שניות
+
     const interval = setInterval(() => {
       setTimeString(getRelativeTimeString(date));
     }, 30000);

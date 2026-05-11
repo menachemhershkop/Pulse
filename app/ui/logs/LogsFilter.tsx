@@ -3,7 +3,7 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { useTransition } from "react";
 
-export default function LogsFilter() {
+export default function LogsFilter({missionNames}:{missionNames:string[]}) {
     const router = useRouter();
     const searchParams = useSearchParams();
     const [isPending, startTransition] = useTransition();
@@ -18,23 +18,25 @@ export default function LogsFilter() {
         startTransition(()=>{router.push(`?${params.toString()}`)});
     };
 
-  return (
+  return(
     <div
       className={`flex flex-wrap gap-4 mb-6 bg-white p-4 rounded-xl border border-gray-100 shadow-sm transition-opacity ${
         isPending ? "opacity-50" : "opacity-100"
       }`}
     >
-      <div className="flex-1 min-w-52">
-        <input
-          type="text"
-          placeholder="חפש לפי שם משימה..."
-          defaultValue={searchParams.get("missionName") || ""}
-          onChange={(e) =>
-            handleFilterChange("missionName", e.target.value)
-          }
-          className="w-full border border-gray-200 rounded-lg p-2 text-sm focus:ring-2 focus:ring-indigo-500 outline-none"
-        />
-      </div>
+      {/* במקום input — select */}
+      <select
+        defaultValue={searchParams.get("missionName") || ""}
+        onChange={(e) => handleFilterChange("missionName", e.target.value)}
+        className="flex-1 min-w-52 border border-gray-200 rounded-lg p-2 text-sm outline-none focus:ring-2 focus:ring-indigo-500"
+      >
+        <option value="">כל המשימות</option>
+        {missionNames.map((name) => (
+          <option key={name} value={name}>
+            {name}
+          </option>
+        ))}
+      </select>
 
       <select
         defaultValue={searchParams.get("priority") || ""}

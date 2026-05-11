@@ -16,6 +16,10 @@ export default async function LogsPage({ searchParams }: LogsPageProps) {
 
   const logs = (await getLogs()) as unknown as Log[];
 
+  const missionName = Array.from(
+    new Set(logs.map((log) => log.mission.missionName))
+  );
+
   const filteredLogs = logs.filter((log) => {
     const matchMissionName =
       !params.missionName ||
@@ -35,7 +39,7 @@ export default async function LogsPage({ searchParams }: LogsPageProps) {
     <div className="p-8 max-w-6xl mx-auto text-black">
       <h1 className="text-2xl font-bold mb-6">מעקב וביצוע משימות</h1>
 
-      <LogsFilter />
+      <LogsFilter missionNames={missionName}/>
 
       <LogsTable logs={filteredLogs} />
     </div>

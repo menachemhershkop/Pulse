@@ -19,14 +19,14 @@ const Navbar = ({ userName }: { userName: string | null }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center gap-8">
-            {/* לוגו או שם המערכת */}
-            <div className="flex-shrink-0 flex items-center">
+
+            <div className="shrink-0 flex items-center">
               <span className="text-xl font-bold text-indigo-600 tracking-tight">
                 MissionControl
               </span>
             </div>
 
-            {/* תפריט הניווט */}
+ 
             <div className="hidden sm:ml-6 sm:flex sm:space-x-8 sm:space-x-reverse">
               {navItems.map((item) => {
                 const isActive = pathname === item.href;
@@ -64,7 +64,7 @@ const Navbar = ({ userName }: { userName: string | null }) => {
         </div>
       </div>
 
-      {/* תפריט מובייל מהיר (למסכים קטנים) */}
+ 
       <div className="sm:hidden flex justify-around py-2 border-t bg-gray-50">
         {navItems.map((item) => (
           <Link
